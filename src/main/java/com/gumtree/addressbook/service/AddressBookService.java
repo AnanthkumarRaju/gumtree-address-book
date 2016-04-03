@@ -2,6 +2,7 @@ package com.gumtree.addressbook.service;
 
 import com.gumtree.addressbook.dto.Gender;
 import com.gumtree.addressbook.dto.Person;
+import org.joda.time.Days;
 
 import java.io.IOException;
 import java.net.URISyntaxException;
@@ -35,5 +36,9 @@ public class AddressBookService {
 
     public Person findPersonByName(String name) {
         return persons.stream().filter(person -> person.getName().equals(name)).findFirst().get();
+    }
+
+    public long findAgeDifferenceInDays(String nameOne, String nameTwo) {
+        return Days.daysBetween(findPersonByName(nameOne).getDateOfBirth(), findPersonByName(nameTwo).getDateOfBirth()).getDays();
     }
 }

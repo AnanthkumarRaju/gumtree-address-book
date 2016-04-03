@@ -43,4 +43,9 @@ public class AddressBookServiceTest {
 
         assertThat(actualOldestPerson, is(expectedOldestPerson));
     }
+
+    @Test
+    public void testFindHowManyDaysOlderIsBillThanPaul() throws Exception {
+        assertThat(addressBookService.findAgeDifferenceInDays("Bill McKnight", "Paul Robinson"), is(2862L));
+    }
 }
