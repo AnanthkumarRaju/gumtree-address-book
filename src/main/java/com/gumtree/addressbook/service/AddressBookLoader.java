@@ -3,6 +3,7 @@ package com.gumtree.addressbook.service;
 import com.gumtree.addressbook.dto.Gender;
 import com.gumtree.addressbook.dto.Person;
 import org.apache.commons.lang3.StringUtils;
+import org.joda.time.LocalDate;
 import org.joda.time.format.DateTimeFormatter;
 
 import java.io.IOException;
@@ -27,11 +28,10 @@ public class AddressBookLoader {
     private Person parserLine(String line) {
         try {
             String[] part = StringUtils.split(line, ",");
-            Person person = new Person();
-            person.setName(part[0]);
-            person.setGender(Gender.valueOf(part[1].trim()));
-            person.setDateOfBirth(DATE_OF_BIRTH_PATTERN.parseLocalDate(part[2].trim()));
-            return person;
+            String name = part[0];
+            Gender gender = Gender.valueOf(part[1].trim());
+            LocalDate dateOfBirth = DATE_OF_BIRTH_PATTERN.parseLocalDate(part[2].trim());
+            return new Person(name, gender, dateOfBirth);
         } catch (Exception e) {
             throw new RuntimeException();
         }

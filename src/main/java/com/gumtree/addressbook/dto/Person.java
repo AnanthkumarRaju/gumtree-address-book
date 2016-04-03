@@ -7,6 +7,12 @@ public class Person {
     private Gender gender;
     private LocalDate dateOfBirth;
 
+    public Person(String name, Gender gender, LocalDate dateOfBirth) {
+        this.name = name;
+        this.gender = gender;
+        this.dateOfBirth = dateOfBirth;
+    }
+
     public String getName() {
         return name;
     }
